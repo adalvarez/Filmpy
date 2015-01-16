@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Proyecto desarrollado por Adrián Álvarez Calderón @chapitro
+# Proyecto desarrollado por Adrián Álvarez@chapitro
 
 from Tkinter import *
 from tkMessageBox import showinfo
