@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Proyecto desarrollado por Adrián Álvarez Calderón @chapitro
+# Proyecto desarrollado por Adrián Álvarez @chapitro
 
 """
 Filmpy es un proyecto que busca tener una plataforma
