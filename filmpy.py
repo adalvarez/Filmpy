@@ -5,7 +5,7 @@
 """
 Filmpy es un proyecto que busca tener una plataforma
 para el almacenamiento de información de películas,
-en este se puede registrar una película y será almacenados sus datos.
+en este se puede registrar una película y serán almacenados sus datos.
 Por su parte cuando se registre una película se indica
 el titulo, el valor de ranking y un comentario. Si el
 usuario desea ingresa un link de www.filmaffinity.com
@@ -52,10 +52,6 @@ dBF.place(x=40,y=110)
 searcher = LabelFrame(root, text="Searcher", padx=5, pady=5, background='#6E6E6E',fg='#ffffff')
 searcher.place(x=40,y=395)
 
-##showF = Frame(root)
-##showF.place(x=450, y= 120)
-##showF.configure(background='#6E6E6E')
-
 separator1 = Frame(height=500, width=2, bd=1, bg="#1C1C1C", relief=SUNKEN)
 separator1.place(x=418, y= 100)
 
@@ -95,9 +91,9 @@ def registrar():
 Button(root, text="Movie!", command=registrar, background='#1C1C1C',relief=RIDGE,font=("bold", 11,"bold"),fg='#ffffff',activeforeground='#ffffff', activebackground='#424242').place(x=610,y=640)
 
 def onselectdBA(evento):
-    wid = evento.widget
-    index = int(wid.curselection()[0])
     try:
+        wid = evento.widget
+        index = int(wid.curselection()[0])
         onselectdB(index, dBlistaMovies)
     except:
         pass
@@ -165,11 +161,11 @@ def onselectdB(index, listaX):
     def shareMovie():
         pass
     
-    img_share = Image.open("config/share.jpg") # Abrir logo
-    photo_share = ImageTk.PhotoImage(img_share) # Características de imagen
-    boton_share = Button(root, image=photo_share, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E', command= shareMovie) # Config de botón/imagen 
-    boton_share.photo_share = photo_share # Config
-    boton_share.place(x=1245, y= 270)
+##    img_share = Image.open("config/share.jpg") # Abrir logo
+##    photo_share = ImageTk.PhotoImage(img_share) # Características de imagen
+##    boton_share = Button(root, image=photo_share, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E', command= shareMovie) # Config de botón/imagen 
+##    boton_share.photo_share = photo_share # Config
+##    boton_share.place(x=1245, y= 270)
 
     showF = Frame(root)
     showF.place(x=460, y= 140)
@@ -191,13 +187,14 @@ def onselectdB(index, listaX):
     showFB = Frame(root)
     showFB.place(x=790, y= 150)
     showFB.configure(bg='#ffffff')
-    #Label(showFB, text="Title:",font=("bold", 11, "bold"),fg='#000000',bg='#ffffff', justify=LEFT).grid(row=0, column=0,sticky=W)
+    
     try: 
         img_img = Image.open("covers/%s.jpg"%splitInfo[0]) # Abrir logo
         photo_img = ImageTk.PhotoImage(img_img)
         boton_img = Button(showFB, image=photo_img, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E') 
         boton_img.photo_img = photo_img # Config
         boton_img.grid(row=0, column=0, rowspan=14, padx=7)
+        Label(showFB, text="By FilmAffinity",font=("bold", 7, "bold"),fg='#000000',bg='#ffffff', justify=LEFT).grid(row=14, column=0)
 
         if len(splitInfo[4]) > 34:
             varTitle = (splitInfo[4])[:35] + '...'
@@ -270,9 +267,12 @@ def base():
     file_storage =  Listbox(dBF, height=10, width=45, activestyle='none', selectbackground='#F0F0F0', selectforeground='#007ee5', 
         yscrollcommand = scrollbary.set, xscrollcommand = scrollbarx.set, font=("bold", 9, "bold"), background='#F0F0F0')
 
-    for files in os.listdir(r'movies/'):
-        file_storage.insert(END, "%s"%files[:-4])
-
+    try:
+        for files in os.listdir(r'movies/'):
+            file_storage.insert(END, "%s"%files[:-4])
+    except:
+        os.mkdir('movies/')
+        
     global dBlistaMovies
     dBlistaMovies = os.listdir(r'movies/')
     
