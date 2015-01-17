@@ -185,7 +185,7 @@ def onselectdB(index, listaX):
     separator2.place(x=780, y= 150)
 
     showFB = Frame(root)
-    showFB.place(x=790, y= 150)
+    showFB.place(x=790, y= 135)
     showFB.configure(bg='#ffffff')
     
     try: 
