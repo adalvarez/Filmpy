@@ -10,7 +10,8 @@ y finalmente la sipnosis.
 El usuario disfrutará de la interactiva necesaria como edición de parámetros de una película ingresada, como así también la
 búsqueda por nombre de las mismas y borrado.
 
-<h3>Requirimientos</h3>
+Requirimientos
+--
 Proyecto desarrollado en Python 2.7.8
 Librerías necesarias: (* no default en python)
 
@@ -26,6 +27,10 @@ Librerías necesarias: (* no default en python)
 <li>urllib2</li>
 </ul>
 
+Review
+--
+
+Review y videotutorial: <a href="https://www.youtube.com/watch?v=3t-yTqXVbBU">https://www.youtube.com/watch?v=3t-yTqXVbBU</a>
 
 Proyecto desarrollado por <strong><em>Adrián Álvarez</strong></em>
 <br>Twitter: <a href="https://twitter.com/chapitro">@chapitro</a>
