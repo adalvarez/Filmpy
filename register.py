@@ -169,7 +169,7 @@ def edit(lista):
                     root.destroy()
                elif url.get() == '':
                     guardarPelicula = open('movies/%s.txt'%title.get(),'w')
-                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + ' ' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
+                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + '' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
                     guardarPelicula.write(datos.encode('utf-8'))
                     guardarPelicula.close()
                     showinfo(title="Warning", message="Please reload the panel of movies.")
@@ -272,7 +272,7 @@ def registro():
                     root.destroy()
                elif url.get() == '':
                     guardarPelicula = open('movies/%s.txt'%title.get(),'w')
-                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + ' ' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
+                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + '' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
                     guardarPelicula.write(datos.encode('utf-8'))
                     guardarPelicula.close()
                     root.destroy()

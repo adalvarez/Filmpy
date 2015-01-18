@@ -32,13 +32,13 @@ from ScrolledText import *
 
 root = Tk()
 root.geometry("1320x690+15+10")
-root.title("| Filmpy |")
+root.title("Filmpy @chapitro")
 root.configure(background='#6E6E6E')
-root.attributes("-toolwindow", 1)
 root.resizable(0,0)
 
 # Colores:
 "Fondo claro: #6E6E6E, Fondo oscuro: #424242, fondo más oscuro: #1C1C1C"
+
 
     # --- Frames
 
@@ -70,6 +70,7 @@ footerF3 = Frame(root)
 footerF3.place(x=0,y=0,height=10,width=1320)
 footerF3.configure(background='#585858')
 
+
     # --- Frames <//END//>
 
     # --- Logo 
@@ -80,9 +81,24 @@ boton_logo = Button(headF, image=photo_logo, borderwidth=0,highlightcolor='#6E6E
 boton_logo.photo_logo = photo_logo # Config
 boton_logo.grid(row=0, column=0, rowspan=2) # Ubicación
 
-    # --- Logo <//END//>
+def vacio():
+    img_cinta = Image.open("config/cinta.jpg") # Abrir logo
+    photo_cinta = ImageTk.PhotoImage(img_cinta) # Características de imagen
+    boton_cinta = Button(root, image=photo_cinta, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E') # Config de botón/imagen 
+    boton_cinta.photo_cinta = photo_cinta # Config
+    boton_cinta.place(x=780,y=220)
 
-Label(root, text='Info: ',font=("bold", 13,"bold"),fg='#ffffff',bg='#6E6E6E').place(x=800,y=90)
+    try:
+        if os.listdir(r'movies/') == [] :
+            Label(root, text='You can add a movie!',font=("bold", 13,"bold"),fg='#A4A4A4',bg='#6E6E6E').place(x=760,y=340)
+        else:
+            Label(root, text='You can watch movie info!',font=("bold", 13,"bold"),fg='#A4A4A4',bg='#6E6E6E').place(x=740,y=340)
+    except:
+        Label(root, text='You can add a movie!',font=("bold", 13,"bold"),fg='#A4A4A4',bg='#6E6E6E').place(x=760,y=340)
+
+vacio()
+
+    # --- Logo <//END//>
 
 
 def registrar():
@@ -90,11 +106,12 @@ def registrar():
 
 Button(root, text="Movie!", command=registrar, background='#1C1C1C',relief=RIDGE,font=("bold", 11,"bold"),fg='#ffffff',activeforeground='#ffffff', activebackground='#424242').place(x=610,y=640)
 
-def onselectdBA(evento):
+def onselectdBA(evento): 
     try:
         wid = evento.widget
         index = int(wid.curselection()[0])
         onselectdB(index, dBlistaMovies)
+        #Label(backInfoD, text='Info: ',font=("bold", 13,"bold"),fg='#ffffff',bg='#6E6E6E').place(x=800,y=90)
     except:
         pass
 
@@ -119,6 +136,10 @@ def onselectdB(index, listaX):
     
     backInfo = Frame(height=450, width=775, bd=1, bg="#ffffff", relief=SUNKEN)
     backInfo.place(x=450, y= 130)
+    global botonesF
+    botonesF = Frame(root)
+    botonesF.place(x=1245, y= 130)
+    botonesF.configure(bg='#6E6E6E')
 
     infoMovieRead =  open("movies/%s"%listaX[index], 'r').read()
     splitInfo = infoMovieRead.split('-,-')
@@ -134,38 +155,38 @@ def onselectdB(index, listaX):
         global backInfo
         backInfo.destroy()
 
-        backInfoD = Frame(height=10, width=775, bd=1, bg="#1C1C1C", relief=SUNKEN)
+        backInfoD = Frame(height=10, width=775, bg="#6E6E6E", relief=SUNKEN)
         backInfoD.place(x=450, y= 121)
         
-        backInfoF = Frame(height=10, width=775, bd=1, bg="#1C1C1C", relief=SUNKEN)
+        backInfoF = Frame(height=10, width=775, bg="#6E6E6E", relief=SUNKEN)
         backInfoF.place(x=450, y=580)
         
-        backInfo = Frame(height=450, width=775, bd=1, bg="#ffffff", relief=SUNKEN)
+        backInfo = Frame(height=450, width=775, bg="#6E6E6E", relief=SUNKEN)
         backInfo.place(x=450, y= 130)
-    
+        
+        global botonesF
+        botonesF.destroy()
+
+        botonesF = Frame(root)
+        botonesF.place(x=1245, y= 130)
+        botonesF.configure(bg='#6E6E6E')
+        
+        vacio()
+        
     img_delete = Image.open("config/delete.jpg") # Abrir logo
     photo_delete = ImageTk.PhotoImage(img_delete) # Características de imagen
-    boton_delete = Button(root, image=photo_delete, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E', command= deleteMovie) # Config de botón/imagen 
+    boton_delete = Button(botonesF, image=photo_delete, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E', command= deleteMovie) # Config de botón/imagen 
     boton_delete.photo_delete = photo_delete # Config
-    boton_delete.place(x=1245, y= 130)
+    boton_delete.grid(row=0, column=0, pady=20)
 
     def editMovie():
         edit(splitInfo)
-    
+        
     img_edit = Image.open("config/edit.jpg") # Abrir logo
     photo_edit = ImageTk.PhotoImage(img_edit) # Características de imagen
-    boton_edit = Button(root, image=photo_edit, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E', command= editMovie) # Config de botón/imagen 
+    boton_edit = Button(botonesF, image=photo_edit, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E', command= editMovie) # Config de botón/imagen 
     boton_edit.photo_edit = photo_edit # Config
-    boton_edit.place(x=1245, y= 200)
-
-    def shareMovie():
-        pass
-    
-##    img_share = Image.open("config/share.jpg") # Abrir logo
-##    photo_share = ImageTk.PhotoImage(img_share) # Características de imagen
-##    boton_share = Button(root, image=photo_share, borderwidth=0,highlightcolor='#6E6E6E', highlightthickness=0,relief=FLAT,activebackground='#6E6E6E', command= shareMovie) # Config de botón/imagen 
-##    boton_share.photo_share = photo_share # Config
-##    boton_share.place(x=1245, y= 270)
+    boton_edit.grid(row=1, column=0)
 
     showF = Frame(root)
     showF.place(x=460, y= 140)
@@ -250,7 +271,7 @@ def onselectdB(index, listaX):
         textpad2.config(state='disabled')
         
     except:
-        pass
+        Label(showFB, text="\n\n\n\n\n\n\n\n\n\n\nNo information.\nYou can edit link of movie and\nreceive technical info about movie.",font=("bold", 10, "bold"),fg='#000000',bg='#ffffff', justify=LEFT).grid(row=0, column=0)
     
 def base():
     global dBF
@@ -366,6 +387,6 @@ def enter(event):
 
 search.bind('<Return>', enter)
 
-Label(root, text="Copyright @chapitro 2014",font=("Helvetica 16 bold italic", 10),fg='#ffffff', background='#424242').place(x=1165,y=668)
+Label(root, text="By @chapitro 2015 v0.2",font=("Helvetica 16 bold italic", 10),fg='#ffffff', background='#424242').place(x=1175,y=668)
 
 root.mainloop()
