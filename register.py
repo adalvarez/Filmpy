@@ -159,17 +159,23 @@ def edit(lista):
                pass
           
           if title.get() != '' and textpad.get('1.0', END+'-1c') != '' and option != 0 and title.get() not in os.listdir(r'movies/'):
+
+               delete_caracteres = ['/', '\\', ':', '*','?', '"', '<', '>', '|']
+               text = title.get()
+               for i in delete_caracteres:
+                    text = text.replace(i, ' ')
+               
                if url.get() != '' and url.get()[:31] == 'http://www.filmaffinity.com/en/':
-                    movieDatos = llamarWEB(url.get(), title.get())
-                    guardarPelicula = open('movies/%s.txt'%title.get(),'w')
-                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + url.get() + movieDatos.decode('utf-8')
+                    movieDatos = llamarWEB(url.get(), text)
+                    guardarPelicula = open('movies/%s.txt'%text,'w')
+                    datos = text + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + url.get() + movieDatos.decode('utf-8')
                     guardarPelicula.write(datos.encode('utf-8'))
                     guardarPelicula.close()
                     showinfo(title="Warning", message="Please reload the panel of movies.")
                     root.destroy()
                elif url.get() == '':
-                    guardarPelicula = open('movies/%s.txt'%title.get(),'w')
-                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + '' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
+                    guardarPelicula = open('movies/%s.txt'%text,'w')
+                    datos = text + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + '' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
                     guardarPelicula.write(datos.encode('utf-8'))
                     guardarPelicula.close()
                     showinfo(title="Warning", message="Please reload the panel of movies.")
@@ -262,17 +268,23 @@ def registro():
      Label(root, text="* Required information",font=("Helvetica 16 bold italic", 8),fg='#ffffff', background='#6E6E6E').place(x=20,y=545)
      
      def ejecutar():
+          
           if title.get() != '' and textpad.get('1.0', END+'-1c') != '' and option != 0 and title.get() not in os.listdir(r'movies/'):
+               delete_caracteres = ['/', '\\', ':', '*','?', '"', '<', '>', '|']
+               text = title.get()
+               for i in delete_caracteres:
+                    text = text.replace(i, ' ')
+                    
                if url.get() != '' and url.get()[:31] == 'http://www.filmaffinity.com/en/':
-                    movieDatos = llamarWEB(url.get(), title.get())
-                    guardarPelicula = open('movies/%s.txt'%title.get(),'w')
-                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + url.get() + movieDatos.decode('utf-8')
+                    movieDatos = llamarWEB(url.get(), text)
+                    guardarPelicula = open('movies/%s.txt'%text,'w')
+                    datos = text + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + url.get() + movieDatos.decode('utf-8')
                     guardarPelicula.write(datos.encode('utf-8'))
                     guardarPelicula.close()
                     root.destroy()
                elif url.get() == '':
-                    guardarPelicula = open('movies/%s.txt'%title.get(),'w')
-                    datos = title.get() + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + '' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
+                    guardarPelicula = open('movies/%s.txt'%text,'w')
+                    datos = text + '-,-' + textpad.get('1.0', END+'-1c') + '-,-' + str(option) + '-,-' + '' + '-,-' + ' ' + '-,-' + '' + '-,-' + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-'  + ' ' + '-,-' + ' ' + '-,-' + ' ' + '-,-' 
                     guardarPelicula.write(datos.encode('utf-8'))
                     guardarPelicula.close()
                     root.destroy()
