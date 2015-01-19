@@ -92,6 +92,7 @@ def show_menu(e):
 
 def edit(lista):
      root = Toplevel()
+     make_menu(root)
      root.geometry("420x630+420+35")
      root.title("Register")
      root.configure(background='#6E6E6E')

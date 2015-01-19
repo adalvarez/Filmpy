@@ -26,6 +26,8 @@ import os
 from textblob import TextBlob
 from register import registro
 from register import edit
+from register import show_menu
+from register import make_menu
 from ScrolledText import *
 
 # --- GUI
@@ -386,6 +388,8 @@ def enter(event):
     file_storageB.bind('<<ListboxSelect>>', onselectdBB)
 
 search.bind('<Return>', enter)
+make_menu(root)
+search.bind_class("Entry", "<Button-3><ButtonRelease-3>", show_menu)
 
 Label(root, text="By @chapitro 2015 v0.2",font=("Helvetica 16 bold italic", 10),fg='#ffffff', background='#424242').place(x=1175,y=668)
 
