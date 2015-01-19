@@ -71,6 +71,25 @@ def llamarWEB (url, name):
      return infoMovie
 
 
+def make_menu(w):
+    global the_menu
+    the_menu = Menu(w, tearoff=0)
+    the_menu.add_command(label="Cut")
+    the_menu.add_command(label="Copy")
+    the_menu.add_command(label="Paste")
+
+
+def show_menu(e):
+    w = e.widget
+    the_menu.entryconfigure("Cut",
+    command=lambda: w.event_generate("<<Cut>>"))
+    the_menu.entryconfigure("Copy",
+    command=lambda: w.event_generate("<<Copy>>"))
+    the_menu.entryconfigure("Paste",
+    command=lambda: w.event_generate("<<Paste>>"))
+    the_menu.tk.call("tk_popup", the_menu, e.x_root, e.y_root)
+    
+
 def edit(lista):
      root = Toplevel()
      root.geometry("420x630+420+35")
@@ -185,6 +204,9 @@ def edit(lista):
           else:
                tkMessageBox.showerror(title="Warning", message="Problem with the required values. Please check:\n• Already entered the film.\n• Enter the title of the film.\n• Enter the commentary of the film.\n• Select a value ranking.")
 
+     title.bind_class("Entry", "<Button-3><ButtonRelease-3>", show_menu)
+     url.bind_class("Entry", "<Button-3><ButtonRelease-3>", show_menu)
+     
      Button(root, text="Save", command=save, background='#1C1C1C',relief=RIDGE,font=("bold", 11,"bold"),fg='#ffffff',activeforeground='#ffffff', activebackground='#424242').place(x=170, y=580)
 
      root.mainloop()
@@ -192,6 +214,7 @@ def edit(lista):
 
 def registro():
      root = Toplevel()
+     make_menu(root)
      root.geometry("420x630+420+35")
      root.title("Register")
      root.configure(background='#6E6E6E')
@@ -293,6 +316,8 @@ def registro():
           else:
                tkMessageBox.showerror(title="Warning", message="Problem with the required values. Please check:\n• Already entered the film.\n• Enter the title of the film.\n• Enter the commentary of the film.\n• Select a value ranking.")
 
+     title.bind_class("Entry", "<Button-3><ButtonRelease-3>", show_menu)
+     url.bind_class("Entry", "<Button-3><ButtonRelease-3>", show_menu)
      
      Button(root, text="Register!", command=ejecutar, background='#1C1C1C',relief=RIDGE,font=("bold", 11,"bold"),fg='#ffffff',activeforeground='#ffffff', activebackground='#424242').place(x=170, y=580)
      
